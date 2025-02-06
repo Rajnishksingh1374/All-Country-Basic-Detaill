@@ -6,12 +6,9 @@
 //     })
 // })
 
-
 const countriesContainer = document.querySelector('.countries-container')
 const countryCard = document.createElement('a')
 countryCard.classList.add('country-card')
-
-
 
 // const cardImg = document.createElement('img')
 // cardImg.src = 'https://flagcdn.com/is.svg'
@@ -20,7 +17,6 @@ countryCard.classList.add('country-card')
 // yadi ek do element create karana ho to ye formet kar sakte hai 
 
 // itan banane se ke liye keval ek line code
-
 
 const cardHTML = `
  <img src="https://flagcdn.com/is.svg" alt="flag">

@@ -3,12 +3,11 @@ const filterByRegion = document.querySelector('.filter-by-region')
 const searchInput = document.querySelector('.serach-container input')
 const changesON = document.querySelector('.changes-On')
 
-
 let allCountriesData
 
 fetch('https://restcountries.com/v3.1/all')
     .then((res) => res.json())
-    .then((data) =>{
+    .then((data) => {
         rendreCountries(data)
         allCountriesData = data
     })
@@ -40,42 +39,42 @@ filterByRegion.addEventListener('change', (e) => {
     fetch(`https://restcountries.com/v3.1/region/${filterByRegion.value}`)
         .then((res) => res.json())
         .then(rendreCountries)
-//         .then((data) => {
-//             countriesContainer.innerHTML = ''
-//             data.forEach((country) => {
-//                 // console.log(country);
+    //         .then((data) => {
+    //             countriesContainer.innerHTML = ''
+    //             data.forEach((country) => {
+    //                 // console.log(country);
 
 
-//                 const countryCard = document.createElement('a')
-//                 countryCard.classList.add('country-card')
-//                 countryCard.href = `/country.html?name=${country.name.common}`
+    //                 const countryCard = document.createElement('a')
+    //                 countryCard.classList.add('country-card')
+    //                 countryCard.href = `/country.html?name=${country.name.common}`
 
-//                 countryCard.innerHTML = `
-//             <img src="${country.flags.svg}" alt="flag">
-//            
-//                 <div class="card-text">
-//                     <h3 class="card-title">${country.name.common}</h3>
-//                     <p><b>Population: </b>${country.population.toLocaleString('en-IN')}</p>
-//                     <p><b>Region: </b>${country.region}</p>
-//                     <p><b>Capital: </b>${country.capital}</p>
-//                 </div>
-// `
-//                 countriesContainer.append(countryCard)
-//             })
-//         })
+    //                 countryCard.innerHTML = `
+    //             <img src="${country.flags.svg}" alt="flag">
+    //            
+    //                 <div class="card-text">
+    //                     <h3 class="card-title">${country.name.common}</h3>
+    //                     <p><b>Population: </b>${country.population.toLocaleString('en-IN')}</p>
+    //                     <p><b>Region: </b>${country.region}</p>
+    //                     <p><b>Capital: </b>${country.capital}</p>
+    //                 </div>
+    // `
+    //                 countriesContainer.append(countryCard)
+    //             })
+    //         })
 })
 
 function rendreCountries(data) {
     countriesContainer.innerHTML = ''
-            data.forEach((country) => {
-                // console.log(country);
+    data.forEach((country) => {
+        // console.log(country);
 
 
-                const countryCard = document.createElement('a')
-                countryCard.classList.add('country-card')
-                countryCard.href = `/country.html?name=${country.name.common}`
+        const countryCard = document.createElement('a')
+        countryCard.classList.add('country-card')
+        countryCard.href = `/country.html?name=${country.name.common}`
 
-                countryCard.innerHTML = `
+        countryCard.innerHTML = `
             <img src="${country.flags.svg}" alt="flag">
             
                 <div class="card-text">
@@ -85,11 +84,10 @@ function rendreCountries(data) {
                     <p><b>Capital: </b>${country.capital}</p>
                 </div>
 `
-                countriesContainer.append(countryCard)
-            })
+        countriesContainer.append(countryCard)
+    })
 
 }
-
 
 searchInput.addEventListener('input', (e) => {
     const filteredCountries = allCountriesData.filter((country) => country.name.common.toLowerCase().includes(e.target.value.toLowerCase()))

@@ -16,51 +16,51 @@ const borderCountries = document.querySelector('.border-countries')
 
 
 fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`)
-.then((res) => res.json())
-.then(([country]) => {
-    console.log(country);
+    .then((res) => res.json())
+    .then(([country]) => {
+        console.log(country);
 
 
-    flagImage.src = country.flags.svg
-    countriesName.innerText = country.name.common
-    if(country.name.nativeName){
-        nativeName.innerText = Object.values(country.name.nativeName)?.[0].common
-    }else {
-        nativeName.innerText = country.name.common
-    }
+        flagImage.src = country.flags.svg
+        countriesName.innerText = country.name.common
+        if (country.name.nativeName) {
+            nativeName.innerText = Object.values(country.name.nativeName)?.[0].common
+        } else {
+            nativeName.innerText = country.name.common
+        }
 
-    population.innerText = country.population.toLocaleString('en-IN')
-    region.innerText = country.region
-    if(country.subRegion){
-        subRegion.innerHTML = country.subRegion
-    }
-    if(country.capital){
-        capital.innerText = country.capital?.[0]
-    }
+        population.innerText = country.population.toLocaleString('en-IN')
+        region.innerText = country.region
+        if (country.subRegion) {
+            subRegion.innerHTML = country.subRegion
+        }
+        if (country.capital) {
+            capital.innerText = country.capital?.[0]
+        }
 
-    topLevelDomain.innerText = country.tld.join(',')
+        topLevelDomain.innerText = country.tld.join(',')
 
-    if(country.currencies){
-        currencies.innerText = Object.values(country.currencies).map((currency) => currency.name).join(',')
-    }
+        if (country.currencies) {
+            currencies.innerText = Object.values(country.currencies).map((currency) => currency.name).join(',')
+        }
 
-    if(country.languages){
-        languages.innerText = Object.values(country.languages).join(',')
-    }
-    
+        if (country.languages) {
+            languages.innerText = Object.values(country.languages).join(',')
+        }
 
-    if(country.borders){
-        country.borders.forEach((border) => {
-            // console.log(border);
-            fetch(`https://restcountries.com/v3.1/alpha/${border}`)
-            .then((res) => res.json())
-            .then(([borderCountry]) => {
-                // console.log(borderCountry)
-                const borderCountryTag = document.createElement('a')
-                borderCountryTag.innerText = borderCountry.name.common
-                borderCountryTag.href = `country.html?name=${borderCountry.name.common}`
-                borderCountries.append(borderCountryTag)
+
+        if (country.borders) {
+            country.borders.forEach((border) => {
+                // console.log(border);
+                fetch(`https://restcountries.com/v3.1/alpha/${border}`)
+                    .then((res) => res.json())
+                    .then(([borderCountry]) => {
+                        // console.log(borderCountry)
+                        const borderCountryTag = document.createElement('a')
+                        borderCountryTag.innerText = borderCountry.name.common
+                        borderCountryTag.href = `country.html?name=${borderCountry.name.common}`
+                        borderCountries.append(borderCountryTag)
+                    })
             })
-        })
-    }
-})
+        }
+    })
